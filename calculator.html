@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Calculator - PremiumBuild Construction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav">
+           <img class="logo-img" src="public/Untitled design.png" alt="">
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="packages.html" class="nav-link">Packages</a></li>
+                    <li><a href="calculator.html" class="nav-link active">Calculator</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-close" id="nav-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Construction Cost Calculator</h1>
+                <p>Get an instant estimate for your dream home construction</p>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section class="calculator-section">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-form">
+                        <h3><i class="fas fa-calculator"></i> Project Details</h3>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-building"></i> Number of Floors</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="floors" value="ground" checked>
+                                    <span class="radio-custom"></span>
+                                    Ground Floor Only
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="floors" value="g+1">
+                                    <span class="radio-custom"></span>
+                                    Ground + 1 Floor (G+1)
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="floors" value="g+2">
+                                    <span class="radio-custom"></span>
+                                    Ground + 2 Floors (G+2)
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="package-select"><i class="fas fa-box"></i> Package Type</label>
+                            <select id="package-select">
+                                <option value="1849">Basic - ₹1,849/sq ft</option>
+                                <option value="1999">Standard - ₹1,999/sq ft</option>
+                                <option value="2399" selected>Premium - ₹2,399/sq ft</option>
+                                <option value="2999">Ultra Luxury - ₹2,999/sq ft</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="builtup-area"><i class="fas fa-ruler-combined"></i> Built-up Area (sq ft)</label>
+                            <input type="number" id="builtup-area" placeholder="Enter area in sq ft" min="500" max="10000">
+                            <small>Minimum 500 sq ft, Maximum 10,000 sq ft</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="water-sump"><i class="fas fa-tint"></i> RCC Water Sump (Liters)</label>
+                            <input type="number" id="water-sump" placeholder="Enter capacity in liters" min="0" max="50000">
+                            <small>Rate: ₹24/liter (Optional)</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="septic-tank"><i class="fas fa-recycle"></i> Septic Tank (Liters)</label>
+                            <input type="number" id="septic-tank" placeholder="Enter capacity in liters" min="0" max="50000">
+                            <small>Rate: ₹24/liter (Optional)</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="compound-wall"><i class="fas fa-border-style"></i> Compound Wall (sq ft)</label>
+                            <input type="number" id="compound-wall" placeholder="Length × Height in sq ft" min="0" max="5000">
+                            <small>Rate: ₹425/sq ft (Optional)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-result">
+                        <h3><i class="fas fa-rupee-sign"></i> Estimated Construction Cost</h3>
+                        <div class="cost-breakdown">
+                            <div class="cost-item">
+                                <span><i class="fas fa-home"></i> Construction Cost:</span>
+                                <span id="construction-cost">₹0</span>
+                            </div>
+                            <div class="cost-item">
+                                <span><i class="fas fa-tint"></i> Water Sump:</span>
+                                <span id="sump-cost">₹0</span>
+                            </div>
+                            <div class="cost-item">
+                                <span><i class="fas fa-recycle"></i> Septic Tank:</span>
+                                <span id="septic-cost">₹0</span>
+                            </div>
+                            <div class="cost-item">
+                                <span><i class="fas fa-border-style"></i> Compound Wall:</span>
+                                <span id="wall-cost">₹0</span>
+                            </div>
+                            <div class="cost-total">
+                                <span><i class="fas fa-calculator"></i> Total Estimated Cost:</span>
+                                <span id="total-cost">₹0</span>
+                            </div>
+                        </div>
+                        <div class="result-actions">
+                            <button class="btn btn-primary" onclick="window.location.href='contact.html'">
+                                <i class="fas fa-file-alt"></i>
+                                Get Detailed Quote
+                            </button>
+                            <button class="btn btn-secondary" onclick="printEstimate()">
+                                <i class="fas fa-print"></i>
+                                Print Estimate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info Section -->
+        <section class="info-section">
+            <div class="container">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <h3>What's Included</h3>
+                        <ul>
+                            <li>Complete structural work</li>
+                            <li>Electrical and plumbing</li>
+                            <li>Flooring and tiling</li>
+                            <li>Painting and finishing</li>
+                            <li>Doors and windows</li>
+                            <li>Project management</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>What's Not Included</h3>
+                        <ul>
+                            <li>Land cost and registration</li>
+                            <li>Government approvals</li>
+                            <li>Furniture and appliances</li>
+                            <li>Landscaping (unless specified)</li>
+                            <li>External compound development</li>
+                            <li>Additional customizations</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Cost Saving Tips</h3>
+                        <ul>
+                            <li>Choose standard sizes for doors/windows</li>
+                            <li>Opt for local materials when possible</li>
+                            <li>Plan electrical points in advance</li>
+                            <li>Consider future expansion needs</li>
+                            <li>Regular site supervision</li>
+                            <li>Bulk purchase of materials</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h3>Ready to Start Your Project?</h3>
+                <p>Book a free site visit and get a detailed, personalized quote</p>
+                <a href="contact.html" class="btn btn-primary">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Book Free Site Visit
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PremiumBuild</h3>
+                    <p>Building dreams with quality, integrity, and excellence. Your trusted partner for premium home construction.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="packages.html">Packages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="calculator.html">Cost Calculator</a></li>
+                        <li><a href="contact.html">Free Consultation</a></li>
+                        <li><a href="packages.html">Construction Packages</a></li>
+                        <li><a href="services.html">Architecture Design</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> info@premiumbuild.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Construction Avenue, Your City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PremiumBuild Construction. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
